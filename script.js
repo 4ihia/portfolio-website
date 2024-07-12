@@ -1,4 +1,5 @@
-const data = [
+document.addEventListener('DOMContentLoaded', () => {
+        const data = [
     { usuario: 'cjboyle11', prompt: 'Read on and Prosper in a whimsical, handwritten font...', likes: 17, imageSrc: 'https://cdn.leonardo.ai/users/034b7e63-fcff-44dd-b7a0-e75e6c935551/generations/84898f23-65e5-4697-8939-6f872d9b838d/Default_Read_on_and_Prosper_in_a_whimsical_handwritten_font_il_1.jpg?w=512', appUrl: 'https://app.leonardo.ai/?via=aia' },
     { usuario: 'Kingnor', prompt: 'A playfully lounging Deadpool, clad in his iconic red and black suit...', likes: 191, imageSrc: 'https://cdn.leonardo.ai/users/bd3c76b0-2179-4abe-925f-ff1010733409/generations/d75816be-795b-456d-ab1d-190b33cc27c4/variations/alchemyrefiner_alchemymagic_4_d75816be-795b-456d-ab1d-190b33cc27c4_0.jpg?w=512', appUrl: 'https://app.leonardo.ai/?via=aia' },
     { usuario: 'codenamegrey', prompt: 'A sharply skilled graphic artist has crafted a stunning logo for Code Name Grey...', likes: 69, imageSrc: 'https://cdn.leonardo.ai/users/2b9315b0-4b3a-4690-88d7-5676392553f8/generations/eb17613a-f1af-4fe5-893a-f60219f16980/variations/Default_A_sharply_skilled_graphic_artist_has_crafted_a_stunnin_1_eb17613a-f1af-4fe5-893a-f60219f16980_0.jpg?w=512', appUrl: 'https://app.leonardo.ai/?via=aia' },
@@ -11,56 +12,51 @@ const data = [
     { usuario: 'willharveyjones', prompt: 'Generate a vibrant game logo in a flat cartoon style for "Arludo Science Portal"...', likes: 12, imageSrc: 'https://cdn.leonardo.ai/users/1b18f67a-195d-4110-ade0-20e0a9ff5f36/generations/0ebcce17-3b51-4b7c-8aeb-65b46afc04bb/variations/Default_Generate_a_vibrant_game_logo_in_a_flat_cartoon_style_fo_0_0ebcce17-3b51-4b7c-8aeb-65b46afc04bb_0.jpg?w=512', appUrl: 'https://app.leonardo.ai/?via=aia' }
 ];
 
-const cardsContainer = document.getElementById('cards-container');
-const searchInput = document.getElementById('search-input');
+    const container = document.querySelector('.container');
+    const search = document.querySelector('#search');
+    const popup = document.querySelector('#popup');
+    const popupTitle = document.querySelector('#popup-title');
+    const popupPrompt = document.querySelector('#popup-prompt');
+    const closePopup = document.querySelector('#close-popup');
 
-function createCard({ usuario, prompt, likes, imageSrc, appUrl }) {
-    const card = document.createElement('div');
-    card.classList.add('card');
-    
-    const img = document.createElement('img');
-    img.src = imageSrc;
-    img.alt = prompt;
-    card.appendChild(img);
-    
-    const content = document.createElement('div');
-    content.classList.add('content');
-    
-    const userInfo = document.createElement('div');
-    userInfo.classList.add('user-info');
-    
-    const user = document.createElement('span');
-    user.textContent = `@${usuario}`;
-    userInfo.appendChild(user);
-    
-    const likesInfo = document.createElement('div');
-    likesInfo.classList.add('likes');
-    
-    const heartIcon = document.createElement('img');
-    heartIcon.src = 'https://cdn-icons-png.flaticon.com/512/833/833472.png'; // Replace with a suitable heart icon URL
-    likesInfo.appendChild(heartIcon);
-    
-    const likesCount = document.createElement('span');
-    likesCount.textContent = likes;
-    likesInfo.appendChild(likesCount);
-    
-    userInfo.appendChild(likesInfo);
-    content.appendChild(userInfo);
-    
-    const description = document.createElement('p');
-    description.textContent = prompt;
-    content.appendChild(description);
-    
-    card.appendChild(content);
-    cardsContainer.appendChild(card);
-}
+    data.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+            <img class="card-image" src="${item.imagenSrc}" alt="${item.prompt}">
+            <div class="card-content">
+                <p class="card-user">@${item.usuario}</p>
+                <p class="card-likes">${item.likes}</p>
+            </div>
+        `;
+        card.addEventListener('click', () => {
+            popupTitle.textContent = `@${item.usuario}`;
+            popupPrompt.textContent = item.prompt;
+            popup.style.display = 'block';
+        });
+        container.appendChild(card);
+    });
 
-data.forEach(createCard);
+    closePopup.addEventListener('click', () => {
+        popup.style.display = 'none';
+    });
 
-searchInput.addEventListener('input', () => {
-    const searchTerm = searchInput.value.toLowerCase();
-    const filteredData = data.filter(card => card.prompt.toLowerCase().includes(searchTerm) || card.usuario.toLowerCase().includes(searchTerm));
-    
-    cardsContainer.innerHTML = '';
-    filteredData.forEach(createCard);
+    window.addEventListener('click', (event) => {
+        if (event.target === popup) {
+            popup.style.display = 'none';
+        }
+    });
+
+    search.addEventListener('input', () => {
+        const searchValue = search.value.toLowerCase();
+        const cards = container.querySelectorAll('.card');
+        cards.forEach(card => {
+            const user = card.querySelector('.card-user').textContent.toLowerCase();
+            if (user.includes(searchValue)) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
 });

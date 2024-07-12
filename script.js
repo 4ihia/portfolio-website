@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { usuario: 'willharveyjones', prompt: 'Generate a vibrant game logo in a flat cartoon style for "Arludo Science Portal"...', likes: 12, imageSrc: 'https://cdn.leonardo.ai/users/1b18f67a-195d-4110-ade0-20e0a9ff5f36/generations/0ebcce17-3b51-4b7c-8aeb-65b46afc04bb/variations/Default_Generate_a_vibrant_game_logo_in_a_flat_cartoon_style_fo_0_0ebcce17-3b51-4b7c-8aeb-65b46afc04bb_0.jpg?w=512', appUrl: 'https://app.leonardo.ai/?via=aia' }
 ];
 
-    const container = document.querySelector('.container');
+      const container = document.querySelector('.container');
     const search = document.querySelector('#search');
     const popup = document.querySelector('#popup');
     const popupTitle = document.querySelector('#popup-title');
@@ -23,10 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const card = document.createElement('div');
         card.className = 'card';
         card.innerHTML = `
-            <img class="card-image" src="${item.imagenSrc}" alt="${item.prompt}">
+            <img class="card-image" src="${item.imageSrc}" alt="${item.prompt}">
             <div class="card-content">
                 <p class="card-user">@${item.usuario}</p>
-                <p class="card-likes">${item.likes}</p>
+                <p class="card-likes">${item.likes} ❤️</p>
+                <p class="card-prompt">${item.prompt}</p>
             </div>
         `;
         card.addEventListener('click', () => {

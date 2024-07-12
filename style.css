@@ -1,0 +1,84 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #1a1a1a;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+.search-container {
+    padding: 20px;
+    text-align: center;
+}
+
+#search-input {
+    padding: 10px;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 5px;
+    border: none;
+}
+
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-auto-rows: minmax(200px, auto);
+    gap: 10px;
+    padding: 10px;
+}
+
+.card {
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.2s;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.card .content {
+    padding: 15px;
+}
+
+.card .user-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.card .user-info span {
+    font-weight: bold;
+}
+
+.card .user-info .likes {
+    display: flex;
+    align-items: center;
+}
+
+.card .user-info .likes img {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+}
+
+.card .user-info .likes span::before {
+    content: "❤️";
+    margin-right: 5px;
+}
+
+.card p {
+    font-family: 'InstagramFont', sans-serif; /* Adjust this to a suitable font */
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}

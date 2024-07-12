@@ -4,15 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Card Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="search-container">
-        <input type="text" id="search-input" placeholder="Buscar...">
+    <input type="text" id="search" placeholder="Buscar...">
+    <div class="container"></div>
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span id="close-popup">&times;</span>
+            <h2 id="popup-title"></h2>
+            <p id="popup-prompt"></p>
+        </div>
     </div>
-    <div class="cards-container" id="cards-container">
-        <!-- Cards will be dynamically generated here -->
-    </div>
+
     <script src="script.js"></script>
 </body>
 </html>

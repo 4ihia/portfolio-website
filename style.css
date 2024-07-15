@@ -23,6 +23,7 @@ body {
     gap: 16px;
     width: 80%;
     padding: 16px;
+    justify-content: center;
 }
 
 .card {
@@ -30,7 +31,6 @@ body {
     border-radius: 8px;
     overflow: hidden;
     transition: transform 0.3s;
-    position: relative;
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -68,6 +68,7 @@ body {
 
 .card-prompt {
     margin-bottom: 0;
+    font-weight: bold;
 }
 
 .popup {
@@ -105,4 +106,20 @@ body {
     color: #fff;
     text-decoration: none;
     cursor: pointer;
+}
+
+#popup-button {
+    display: block;
+    margin: 20px 0;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#popup-button:hover {
+    background-color: #45a049;
 }

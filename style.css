@@ -32,6 +32,8 @@ body {
     transition: transform 0.3s;
     position: relative;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
 }
 
 .card:hover {
@@ -46,11 +48,26 @@ body {
 
 .card-content {
     padding: 16px;
+    flex-grow: 1;
 }
 
 .card-user, .card-likes, .card-prompt {
     font-size: 12px;
     color: #888;
+}
+
+.card-user {
+    margin-bottom: 8px;
+}
+
+.card-likes {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.card-prompt {
+    margin-bottom: 0;
 }
 
 .popup {
